@@ -1,9 +1,16 @@
 pipeline {
+  /*
   environment {
     registry = "karsharm12/react-jenkins-docker"
     registryCredential = 'dockerhub'
     dockerImage = ''
   }
+  */
+    environment {
+        AWS_ACCESS_KEY_ID     = credentials('jenkins-aws-secret-key-id')
+        AWS_SECRET_ACCESS_KEY = credentials('jenkins-aws-secret-access-key')
+    }    
+
   agent any
   stages {
     stage('Cloning Git') {
@@ -11,6 +18,20 @@ pipeline {
         git 'https://github.com/skarmanya/asde1_sapient.git'
       }
     }
+
+   stage('install') {
+            steps {
+                sh 'npm install'
+            }
+    }
+
+    stage('build') {
+            steps {
+                sh 'npm run build'
+            }
+    }
+
+    /*
     stage('Building image') {
       steps{
         script {
@@ -32,5 +53,9 @@ pipeline {
         sh "docker rmi $registry:$BUILD_NUMBER"
       }
     }
+    */
+
+
+
   }
 }
