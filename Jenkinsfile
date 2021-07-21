@@ -1,4 +1,5 @@
 pipeline {
+  
   /*
   environment {
     registry = "karsharm12/react-jenkins-docker"
@@ -12,6 +13,9 @@ pipeline {
     }    
 
   agent any
+  tools{
+    node "node"
+  }
   stages {
     stage('Cloning Git') {
       steps {
