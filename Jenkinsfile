@@ -21,7 +21,7 @@ pipeline {
   stages {
     stage('Cloning Git') {
       steps {
-        git 'https://github.com/skarmanya/asde1_sapient.git'
+        git 'https://github.com/skarmanya/pipeline_project_react.git'
       }
     }
 
